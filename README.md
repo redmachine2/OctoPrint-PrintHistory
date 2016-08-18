@@ -4,4 +4,8 @@
 
 ## Setup
 
-Install the plugin using Plugin Manager bundled with OctoPrint :)
+Install the plugin via url in Octoprint's plugin manager: https://github.com/redmachine2/OctoPrint-PrintHistory/archive/master.zip 
+
+## Additional Things Added
+
+I have added a filament cost column to the history. The amount per meter can be set in the Plugin Settings.
