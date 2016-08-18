@@ -363,8 +363,7 @@ $(function() {
 
     ADDITIONAL_VIEWMODELS.push([
         PrintHistoryViewModel,
-        ["loginStateViewModel"],
-		["settingsViewModel"],
+        ["loginStateViewModel","settingsViewModel"],
         ["#tab_plugin_printhistory"]
     ]);
 });
