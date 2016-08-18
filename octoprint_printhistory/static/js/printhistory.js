@@ -231,8 +231,9 @@ $(function() {
         };
 
         self.onBeforeBinding = function(){
+        	console.log(self.settings);
 			self.newCost(self.settings.settings.plugins.printhistory.cost());
-		}
+		};
 
         self.changeGraphRange = function (range) {
             if (range == 'week') {
