@@ -159,7 +159,7 @@ $(function() {
                     fileName: self.pureData[key].fileName,
                     success: self.pureData[key].success,
                     filamentUsage: (self.pureData[key].success == true) ? self.formatFilament(self.pureData[key]) : "-",
-					filamentCost: self.calculateCost(self.pureData[key].filamentLength),
+					filamentCost: (self.pureData[key].success == true) ? self.calculateCost(self.pureData[key].filamentLength) : "-",
                     timestamp: self.pureData[key].timestamp,
                     printTime: self.pureData[key].printTime,
                     note: self.pureData[key].hasOwnProperty('note') ? self.pureData[key].note : ""
@@ -189,7 +189,12 @@ $(function() {
         };
 
 		self.calculateCost = function(length){
-			return +(parseFloat(self.newCost()) * parseFloat(length / 1000)).toFixed(2);
+			if(length != 0){
+				return +(parseFloat(self.newCost()) * parseFloat(length / 1000)).toFixed(2);
+			}else{
+				return 0;
+			}
+
 		};
 
         self.formatFilament = function(data) {
