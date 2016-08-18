@@ -44,15 +44,15 @@ class PrintHistoryPlugin(octoprint.plugin.StartupPlugin,
         if os.path.exists(old_path):
             os.rename(old_path, self._history_file_path)
 
+    def get_settings_defaults(self):
+        return dict(cost=0.0666)
+
      ##~~ TemplatePlugin API
     def get_template_configs(self):
         return [
             dict(type="tab", name="History"),
             dict(type="settings", custom_bindings=False)
         ]
-
-    def get_settings_defaults(self):
-        return dict(cost=0.06)
 
     ##~~ AssetPlugin API
     def get_assets(self):
