@@ -3,6 +3,7 @@ $(function() {
         var self = this;
 
         self.loginState = parameters[0];
+		self.settings = parameters[1];
 
         self.totalTime = ko.observable();
         self.totalUsage = ko.observable();
@@ -230,7 +231,7 @@ $(function() {
         };
 
         self.onBeforeBinding = function(){
-			self.newCost(self.loginState.settings.plugins.printhistory.cost());
+			self.newCost(self.settings.settings.plugins.printhistory.cost());
 		}
 
         self.changeGraphRange = function (range) {
@@ -362,6 +363,7 @@ $(function() {
     ADDITIONAL_VIEWMODELS.push([
         PrintHistoryViewModel,
         ["loginStateViewModel"],
+		["settingsViewModel"],
         ["#tab_plugin_printhistory"]
     ]);
 });
