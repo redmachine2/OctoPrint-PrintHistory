@@ -229,6 +229,10 @@ $(function() {
             self.requestData();
         };
 
+        self.onBeforeBinding = function(){
+			self.newCost(self.settings.settings.plugins.printhistory.cost());
+		}
+
         self.changeGraphRange = function (range) {
             if (range == 'week') {
                 self.lastMonthGraphMinimum(moment(new Date()).subtract(1, 'weeks').valueOf());
