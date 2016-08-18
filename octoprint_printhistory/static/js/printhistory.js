@@ -230,7 +230,7 @@ $(function() {
         };
 
         self.onBeforeBinding = function(){
-			self.newCost(self.settings.settings.plugins.printhistory.cost());
+			self.newCost(self.loginState.settings.plugins.printhistory.cost());
 		}
 
         self.changeGraphRange = function (range) {
