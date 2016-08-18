@@ -48,7 +48,11 @@ class PrintHistoryPlugin(octoprint.plugin.StartupPlugin,
     def get_template_configs(self):
         return [
             dict(type="tab", name="History")
+            dict(type="settings", custom_bindings=False)
         ]
+
+    def get_settings_defaults(self):
+        return dict(cost=0.06)
 
     ##~~ AssetPlugin API
     def get_assets(self):

@@ -8,6 +8,9 @@ $(function() {
         self.totalUsage = ko.observable();
         self.isPrinting = ko.observable(undefined);
 
+		self.totalCost = ko.observable();
+		self.newCost = ko.observable();
+
         self.pureData = {};
         self.lastMonthGraphMinimum = ko.observable(moment(new Date()).subtract(1, 'months').valueOf());
 
@@ -155,6 +158,7 @@ $(function() {
                     fileName: self.pureData[key].fileName,
                     success: self.pureData[key].success,
                     filamentUsage: (self.pureData[key].success == true) ? self.formatFilament(self.pureData[key]) : "-",
+					filamentCost: self.calculateCost(self.pureData[key].filamentLength),
                     timestamp: self.pureData[key].timestamp,
                     printTime: self.pureData[key].printTime,
                     note: self.pureData[key].hasOwnProperty('note') ? self.pureData[key].note : ""
@@ -176,11 +180,16 @@ $(function() {
 
             self.totalTime(formatDuration(totalTime));
             self.totalUsage(formatFilament(totalUsage));
+			self.totalCost(self.calculateCost(totalUsage["length"]));
 
             self.listHelper.updateItems(dataRows);
 
             self.updatePlots();
         };
+
+		self.calculateCost = function(length){
+			return +(parseFloat(self.newCost()) * parseFloat(length / 1000)).toFixed(2);
+		};
 
         self.formatFilament = function(data) {
             var tool0 = "";
