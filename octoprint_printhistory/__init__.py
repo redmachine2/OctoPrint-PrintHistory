@@ -38,6 +38,7 @@ class PrintHistoryPlugin(octoprint.plugin.StartupPlugin,
     def on_after_startup(self):
         self._console_logger.debug("Plugins folder: %s" % self._settings.getBaseFolder("plugins"))
         self._console_logger.debug("Uploads folder: %s" % self._settings.getBaseFolder("uploads"))
+        self._logger.info("Print Cost loaded (more: %s)" % self._settings.get(["cost"]))
 
         old_path = os.path.join(self._settings.getBaseFolder("uploads"), "history.yaml")
         self._history_file_path = os.path.join(self.get_plugin_data_folder(), "history.yaml")
@@ -56,10 +57,10 @@ class PrintHistoryPlugin(octoprint.plugin.StartupPlugin,
 
     ##~~ AssetPlugin API
     def get_assets(self):
-        return {
-            "js": ["js/printhistory.js", "js/jquery.flot.pie.js", "js/jquery.flot.time.js", "js/jquery.flot.stack.js", "js/bootstrap-editable.min.js", "js/knockout.x-editable.js"],
-            "css": ["css/printhistory.css", "css/bootstrap-editable.css"]
-        }
+        return dict(
+            js=["js/printhistory.js", "js/jquery.flot.pie.js", "js/jquery.flot.time.js", "js/jquery.flot.stack.js", "js/bootstrap-editable.min.js", "js/knockout.x-editable.js"],
+            css=["css/printhistory.css", "css/bootstrap-editable.css"]
+        )
 
     #~~ EventPlugin API
     def on_event(self, event, payload):
